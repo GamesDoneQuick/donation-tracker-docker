@@ -1,0 +1,15 @@
+*.mo
+*.pyc
+*.swp
+*.sqlite
+build
+*.egg-info
+.webpack_build_cache/
+*.manifest.json
+node_modules/
+dist/
+tracker/static/gen/
+yarn-error.log
+TEST*.xml
+django-donation-tracker
+tracker_project/

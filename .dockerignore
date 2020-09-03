@@ -1,0 +1,16 @@
+*.swp
+*.pyc
+*.manifest.json
+**/*.log
+*.egg-info
+
+db_data
+*.sqlite3
+.direnv
+.github
+**/node_modules
+**/__pycache__
+**/.webpack_build_cache
+**/static/gen/
+**/TEST-*.xml
+
