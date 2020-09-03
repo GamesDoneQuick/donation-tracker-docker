@@ -37,6 +37,7 @@ from tracker import ajax_lookup_channels
 AJAX_LOOKUP_CHANNELS = ajax_lookup_channels.AJAX_LOOKUP_CHANNELS
 ASGI_APPLICATION = 'tracker_project.routing.application'
 CHANNEL_LAYERS = {'default': {'BACKEND': 'channels.layers.InMemoryChannelLayer'}}
+DOMAIN = 'localhost:8000'
 ```
 
 Create a file next called `routing.py` next to `settings.py` and put the following in it:
