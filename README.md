@@ -5,14 +5,14 @@ with Docker to spin up Compose.
 
 The Dockerfiles in this repo use Python 3.6, but any later version should work for the initial setup.
 
-Start up a new Django Project like the [Django Tutorial](https://docs.djangoproject.com/en/2.2/intro/tutorial01/).
+Clone this repo, then while in the root of this repo, start up a new Django Project like the [Django Tutorial](https://docs.djangoproject.com/en/2.2/intro/tutorial01/).
 
 ```
 pip install django~=2.2
 django-admin startproject tracker_project
 ```
 
-Clone the base repo into the same folder as the Dockerfiles.
+Clone the base repo while in the root of this repo.
 
 ```
 git clone github.com@GamesDoneQuick:donation-tracker django-donation-tracker
