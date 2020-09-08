@@ -5,6 +5,9 @@ with Docker to spin up Compose.
 
 The Dockerfiles in this repo use Python 3.6, but any later version should work for the initial setup.
 
+All instructions in here are not necessarily strict requirements, but they should get you into a working state by
+themselves.
+
 Clone this repo, then while in the root of this repo, start up a new Django Project like the [Django Tutorial](https://docs.djangoproject.com/en/2.2/intro/tutorial01/).
 
 ```
@@ -28,6 +31,16 @@ Add the following apps to the `INSTALLED_APPS` section of `tracker_project/setti
     'timezone_field',
     'ajax_select',
     'mptt',
+```
+
+Replace the `DATABASES` section with:
+
+```
+import dj_database_url
+
+DATABASES = {
+    'default': dj_database_url.config(conn_max_age=600),
+}
 ```
 
 Add the following chunk somewhere in `settings.py`:
