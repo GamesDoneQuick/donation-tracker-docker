@@ -88,4 +88,5 @@ You'll want to make a super user so you can access the [admin pages](http://loca
 There are a lot of services out there that let you deploy with Docker Compose. It is out of scope for this document to
 cover any of them here. The file provided here should give you a good starting point. Take special care when setting up
 the DB, you'll likely want to use an externally managed DB with its own backups, but those questions are better left for
-your service provider. 
+your service provider. Also, you'll want to edit your `settings.py` to actually read from the environment for most of
+the settings, as the stock one currently does not.
