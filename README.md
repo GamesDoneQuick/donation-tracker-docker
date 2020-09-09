@@ -35,7 +35,7 @@ Add the following apps to the `INSTALLED_APPS` section of `tracker_project/setti
 
 Replace the `DATABASES` section with:
 
-```
+```python
 import dj_database_url
 
 DATABASES = {
