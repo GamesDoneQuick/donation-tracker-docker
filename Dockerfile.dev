@@ -35,5 +35,5 @@ COPY tracker_project/manage.py requirements.txt ./
 COPY tracker_project/tracker_project ./tracker_project
 
 # Install additional python dependencies
-RUN pip install psycopg2-binary dj-database-url
+RUN pip install psycopg2-binary django-environ
 

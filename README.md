@@ -38,9 +38,14 @@ AJAX_LOOKUP_CHANNELS = ajax_lookup_channels.AJAX_LOOKUP_CHANNELS
 ASGI_APPLICATION = 'tracker_project.routing.application'
 CHANNEL_LAYERS = {'default': {'BACKEND': 'channels.layers.InMemoryChannelLayer'}}
 DOMAIN = 'localhost:8000'
+
+# if using Celery, replace with your actual credentials
+HAS_CELERY = True
+CELERY_BROKER_URL='amqp://guest:guest@rabbitmq:5672/'
+CELERY_RESULT_BACKEND='redis://redis:6379'
 ```
 
-Create a file next called `routing.py` next to `settings.py` and put the following in it:
+Create a file called `routing.py` next to `settings.py` and put the following in it:
 
 ```python
 from channels.auth import AuthMiddlewareStack
@@ -59,6 +64,20 @@ application = ProtocolTypeRouter({
         )
     ),
 })
+```
+
+Create a file called `celery.py` next to `settings.py` and put the following in it:
+
+```python
+import os
+
+from celery import Celery
+
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'tracker_project.settings')
+
+app = Celery('tracker_project')
+app.config_from_object('django.conf:settings', namespace='CELERY')
+app.autodiscover_tasks()
 ```
 
 Edit the `urls.py` file to look something like this:

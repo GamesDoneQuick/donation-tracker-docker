@@ -19,6 +19,37 @@ services:
       - ./django-donation-tracker:/usr/src/app/django-donation-tracker
     depends_on:
       - db
+      - redis
+
+  celery:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    command: bash -c "pip install -r requirements.txt && celery -A tracker_project worker -l info"
+    env_file:
+      ./.env
+    restart: unless-stopped
+    volumes:
+      - ./django-donation-tracker:/usr/src/app/django-donation-tracker
+    depends_on:
+      - backend
+      - rabbitmq
+      - redis
+
+  celery-beat:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    command: bash -c "pip install -r requirements.txt && celery -A tracker_project beat -l info"
+    env_file:
+      ./.env
+    restart: unless-stopped
+    volumes:
+      - ./django-donation-tracker:/usr/src/app/django-donation-tracker
+    depends_on:
+      - backend
+      - rabbitmq
+      - redis
 
   tracker: # lie for nginx' benefit
     build:
@@ -31,15 +62,13 @@ services:
       TRACKER_HOST: http://backend:8000
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8000/tracker"]
+      test: ["CMD", "curl", "-f", "http://localhost:8000/tracker/"]
       interval: 1m30s
       timeout: 10s
       retries: 3
       start_period: 10s
     volumes:
       - ./django-donation-tracker:/usr/src/app/django-donation-tracker
-    ports:
-      - "8001:8000"
     depends_on:
       - backend
 
@@ -74,5 +103,18 @@ services:
   redis:
     image: "redis:alpine"
 
+  rabbitmq:
+    image: "rabbitmq:alpine"
+    volumes:
+      - rabbitmq_etc:/etc/rabbitmq/
+      - rabbitmq_lib:/var/lib/rabbitmq/
+      - rabbitmq_log:/var/log/rabbitmq/
+    environment:
+      - RABBITMQ_DEFAULT_USER=admin
+      - RABBITMQ_DEFAULT_PASS=password
+
 volumes:
   db_data:
+  rabbitmq_etc:
+  rabbitmq_lib:
+  rabbitmq_log:
