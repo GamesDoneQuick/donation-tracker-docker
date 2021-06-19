@@ -18,7 +18,7 @@ django-admin startproject tracker_project
 Clone the base repo while in the root of this repo.
 
 ```
-git clone https://github.com/GamesDoneQuick/donation-tracker-docker.git django-donation-tracker
+git clone https://github.com/GamesDoneQuick/donation-tracker.git django-donation-tracker
 ```
 
 Add the following apps to the `INSTALLED_APPS` section of `tracker_project/settings.py`:
