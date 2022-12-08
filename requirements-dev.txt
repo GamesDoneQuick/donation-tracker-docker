@@ -1,0 +1,5 @@
+-e ./django-donation-tracker
+channels_redis[cryptography]
+redis~=3.4.1
+django-storages
+boto3

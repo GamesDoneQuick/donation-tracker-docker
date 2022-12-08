@@ -31,7 +31,7 @@ services:
       TRACKER_HOST: http://backend:8000
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8000/tracker"]
+      test: ["CMD", "curl", "-f", "http://localhost:8000/tracker/"]
       interval: 1m30s
       timeout: 10s
       retries: 3

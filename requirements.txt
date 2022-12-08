@@ -1,3 +1,3 @@
--e ./django-donation-tracker
+./django-donation-tracker
 channels_redis
 redis~=3.4.1

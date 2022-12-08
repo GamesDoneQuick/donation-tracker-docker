@@ -11,5 +11,5 @@ dist/
 tracker/static/gen/
 yarn-error.log
 TEST*.xml
-django-donation-tracker
 tracker_project/
+/django-donation-tracker/
